@@ -1,5 +1,5 @@
-# macos-privacy-hardening
-Local workstation hardening for MacOS users. Security-conscious macOS users, blue teamers, DFIR, journalists, etc. Curated commands, explanations, and example configs.
+# macOS Privacy & Hardening Toolkit
+macOS Privacy & Hardening Toolkit is a practical, evidence-first hardening guide for security-conscious macOS users. It focuses on visibility, verification, and attack-surface reduction. It is not a one-click hardening script and does not assume every control fits every threat model.
 
 # macOS Privacy & Hardening Toolkit
 
