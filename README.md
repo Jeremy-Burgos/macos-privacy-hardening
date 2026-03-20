@@ -2,9 +2,6 @@
 macOS Privacy & Hardening Toolkit is a practical, evidence-first hardening guide for security-conscious macOS users. It focuses on visibility, verification, and attack-surface reduction. It is not a one-click hardening script and does not assume every control fits every threat model.
 
 # macOS Privacy & Hardening Toolkit
-
-A practical, evidence-first hardening guide for modern macOS systems.
-
 This repository focuses on attack-surface reduction, integrity checks, firewalling, DNS privacy, logging, and forensic visibility. It is not a one-click hardening script, and it does not assume every control fits every threat model.
 
 Use at your own risk. Test in a VM or non-production environment before touching a primary machine.
