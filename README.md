@@ -3,9 +3,9 @@ Local workstation hardening for MacOS users. Security-conscious macOS users, blu
 
 # macOS Privacy & Hardening Toolkit
 
-Opinionated, command-line–driven hardening for macOS (Sonoma / Sequoia era), focused on privacy, integrity, and forensic visibility.
+A practical, evidence-first hardening guide for modern macOS systems.
 
-This repository does **not** try to be a “click once to secure everything” script. Instead, it documents concrete commands, checks, and configurations you can apply and verify yourself.
+This repository focuses on attack-surface reduction, integrity checks, firewalling, DNS privacy, logging, and forensic visibility. It is not a one-click hardening script, and it does not assume every control fits every threat model.
 
 Use at your own risk. Test in a VM or non-production environment before touching a primary machine.
 
