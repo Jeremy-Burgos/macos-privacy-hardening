@@ -1,5 +1,7 @@
 # macOS Privacy & Hardening Toolkit
 
+[![Markdown Lint](https://github.com/Jeremy-Burgos/macos-privacy-hardening/actions/workflows/markdownlint.yml/badge.svg?branch=main)](https://github.com/Jeremy-Burgos/macos-privacy-hardening/actions/workflows/markdownlint.yml)
+
 A practical, evidence-first hardening guide for modern macOS systems.
 
 This repository is built for security-conscious macOS users who want better visibility, better verification, and a more deliberate local security posture. It focuses on attack-surface reduction, integrity checks, firewalling, DNS privacy, logging, and forensic visibility.
