@@ -1,73 +1,118 @@
 # macOS Privacy & Hardening Toolkit
-macOS Privacy & Hardening Toolkit is a practical, evidence-first hardening guide for security-conscious macOS users. It focuses on visibility, verification, and attack-surface reduction. It is not a one-click hardening script and does not assume every control fits every threat model.
 
-# macOS Privacy & Hardening Toolkit
-This repository focuses on attack-surface reduction, integrity checks, firewalling, DNS privacy, logging, and forensic visibility. It is not a one-click hardening script, and it does not assume every control fits every threat model.
+[![Markdown Lint](https://github.com/Jeremy-Burgos/macos-privacy-hardening/actions/workflows/markdownlint.yml/badge.svg?branch=main)](https://github.com/Jeremy-Burgos/macos-privacy-hardening/actions/workflows/markdownlint.yml)
 
-Use at your own risk. Test in a VM or non-production environment before touching a primary machine.
+A practical, evidence-first hardening guide for modern macOS systems.
+
+This repository is built for security-conscious macOS users who want better visibility, better verification, and a more deliberate local security posture. It focuses on attack-surface reduction, integrity checks, firewalling, DNS privacy, logging, and forensic visibility.
+
+This is not a one-click hardening script, and it does not assume every control fits every threat model.
+
+Use at your own risk. Test everything before touching a primary machine.
 
 ## Scope
 
-This toolkit covers:
+This repository covers:
 
-- Integrity and signature checks (packages, app code)
-- Hostnames, users, and groups
-- Built-in firewall (Application Firewall / socketfilterfw)
-- DNS privacy (dnscrypt-proxy, dnsmasq with DNSSEC) and `/etc/hosts`
-- Logging, auditing, and install log retention
-- XProtect status and secure configuration (based on Wazuh / CIS logic)
-- Password policies and lockout configuration
-- Loginwindow banners and UI hardening
-- FileVault and basic “lockdown mode” concepts
-- References to third-party tools (Vallum, Little Snitch, LuLu, Murus, etc.)
+- integrity and signature checks for installer packages and applications
+- host identity, users, and group review
+- built-in firewall hardening with `socketfilterfw`
+- DNS privacy and `/etc/hosts` workflows
+- logging, auditing, and forensic visibility
+- XProtect awareness and update-path checks
+- password policy and login-window hardening
+- FileVault and Lockdown Mode considerations
+- browser and VPN recommendations
+- third-party tooling references for visibility and control
 
-Each topic is documented under `docs/` with commands and their rationale.
+Each topic is documented under `docs/` with commands, rationale, and tradeoffs.
 
-## Target audience
+## Who this repository is for
 
-- Security-conscious macOS users
-- Defenders in high-risk environments
-- DFIR folks who want a repeatable baseline to compare against
+This repository is primarily useful for:
 
-This is **not** a vendor-neutral “compliance” template. It is a practical baseline with clear trade-offs.
+- privacy-conscious macOS users
+- defenders and blue teamers
+- DFIR-minded users who want a repeatable local baseline
+- higher-risk users who want more visibility into what their Mac is doing
+
+This is not a generic compliance template. It is a practical workstation hardening repository with explicit tradeoffs.
+
+## Start here
+
+Read these files first:
+
+- `QUICKSTART.md`
+- `THREAT_MODEL.md`
+- `TESTED_ON.md`
+- `DISCLAIMER.md`
+
+Then move into the numbered guides under `docs/`.
 
 ## Quick start
 
-1. Clone the repo:
+Clone the repository:
 
-   ```bash
-   git clone https://github.com/TheGreenArrow22/macos-privacy-hardening.git
-   cd macos-privacy-hardening
+```bash
+git clone https://github.com/Jeremy-Burgos/macos-privacy-hardening.git
+cd macos-privacy-hardening
+````
 
-2. Start with the overview:
+Open the overview:
 
-   ```bash
-   open docs/00-overview.md
+```bash
+open docs/00-overview.md
+```
 
-3. Apply sections selectively:
+Good first sections to review:
 
-   * Integrity and XProtect: `docs/01-integrity-and-xprotect.md`
-   * Firewall and networking: `docs/03-firewall-and-networking.md`
-   * Password policies: `docs/06-password-policy.md`
+* `docs/01-integrity-and-xprotect.md`
+* `docs/03-firewall-and-networking.md`
+* `docs/05-logging-and-auditing.md`
+* `docs/10-browsers-and-vpns.md`
 
-4. Use the scripts under `scripts/` as **examples only**. They are deliberately conservative and heavily commented.
+The scripts under `scripts/` are examples only. Read them before running them.
 
-## macOS version notes
+## Repository structure
 
-Commands and recommendations here assume a relatively recent macOS (Ventura, Sonoma, Sequoia). Some legacy commands and daemons may be deprecated. Always check:
+```text
+macos-privacy-hardening/
+├── README.md
+├── QUICKSTART.md
+├── DISCLAIMER.md
+├── CHANGELOG.md
+├── SECURITY.md
+├── TESTED_ON.md
+├── THREAT_MODEL.md
+├── .editorconfig
+├── .markdownlint.json
+├── .github/
+├── docs/
+└── scripts/
+```
+
+## macOS version awareness
+
+This repository is written for relatively recent macOS versions, especially Ventura, Sonoma, and Sequoia-era systems.
+
+Some controls are version-sensitive. Always confirm your version before assuming behavior:
 
 ```bash
 sw_vers
 ```
 
-before assuming behavior.
+Compatibility notes should be documented explicitly when a workflow changes between releases.
 
-## Disclaimer
+## Philosophy
 
-You are responsible for verifying these configurations in your own environment. Some changes can:
+This repository is built around five assumptions:
 
-* Lock you out of an account
-* Break network connectivity
-* Interfere with third-party security tools
+1. defaults are not always sufficient
+2. signed or built-in software should not be blindly trusted
+3. visibility matters as much as blocking
+4. verification matters more than checklist hardening
+5. every control should have a reason, a verification path, and a rollback mindset
 
-Read before you paste. Use version control for system config where possible.
+## About
+
+MIT-licensed macOS workstation hardening guide focused on visibility, verification, integrity checks, firewalling, DNS privacy, logging, and forensic visibility for modern macOS systems.
