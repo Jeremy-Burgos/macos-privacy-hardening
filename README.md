@@ -113,4 +113,4 @@ This repository is built around five assumptions:
 
 ## About
 
-MIT-licensed macOS workstation hardening guide focused on visibility, verification, integrity checks, firewalling, DNS privacy, logging, and forensic visibility for modern macOS systems.
+macOS workstation hardening guide focused on visibility, verification, integrity checks, firewalling, DNS privacy, logging, and forensic visibility for modern macOS systems.
