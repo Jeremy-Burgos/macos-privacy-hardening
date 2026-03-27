@@ -51,6 +51,8 @@ If a security or troubleshooting tool needs broad access, this is one of the fir
 
 ## 3. Full Disk Access
 
+![Privacy and Security Full Disk Access settings](../assets/screenshots/privacy/macos-system-settings-privacy-security-full-disk-access.png)
+
 Full Disk Access is one of the most important privacy permissions for administrative and security tooling.
 
 Without it, a tool may be blocked from seeing or reading large parts of the system and user data.

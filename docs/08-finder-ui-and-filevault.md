@@ -50,7 +50,10 @@ Enable FileVault from Terminal:
 
 ```bash
 sudo fdesetup enable
+sudo fdesetup status
 ```
+
+![fdesetup status example](../assets/screenshots/privacy/macos-fdesetup-status.png)
 
 This will:
 

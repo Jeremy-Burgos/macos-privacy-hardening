@@ -94,6 +94,8 @@ Security-related events over the last 24 hours:
 sudo log show --last 24h --predicate 'eventMessage contains "security"' --info
 ```
 
+![Unified log security query example](../assets/screenshots/logging/macos-log-show-security-last24h.png)
+
 Network changes (SSID, DHCP lease, etc.):
 
 ```bash

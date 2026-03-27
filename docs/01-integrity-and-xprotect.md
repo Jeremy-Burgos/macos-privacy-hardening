@@ -10,6 +10,8 @@ Check that a `.pkg` file is signed and by whom:
 pkgutil --check-signature /path/to/file.pkg
 ````
 
+![pkgutil package signature verification example](../assets/screenshots/integrity/macos-pkgutil-check-signature-example.png)
+
 You should see:
 
 * Whether the package is signed
@@ -24,6 +26,8 @@ Inspect a compiled app bundle:
 ```bash
 codesign -dvv /Applications/SomeApp.app
 ```
+
+![codesign detailed application signature example](../assets/screenshots/integrity/macos-codesign-dvv-example.png)
 
 Flags:
 
@@ -125,6 +129,8 @@ ls /Library/Apple/System/Library/LaunchDaemons | grep -i xprotect
 sudo softwareupdate -l --background-critical
 ```
 
+![softwareupdate background critical example](../assets/screenshots/updates/macos-softwareupdate-list-background-critical.png)
+
 You should see logs similar to:
 
 > Triggering a background check with forced scan (critical and config-data updates only)
@@ -136,9 +142,12 @@ XProtect signature updates are delivered via Apple’s update mechanism. Keeping
 To verify XProtect daemons are present:
 
 ```bash
+launchctl list | grep -i xprotect
 launchctl list | grep com.apple.XProtect.daemon.scan
 launchctl list | grep com.apple.XProtect.daemon.scan.startup
 ```
+
+![launchctl XProtect verification example](../assets/screenshots/logging/macos-launchctl-xprotect-check.png)
 
 You want each command to return a single line (count of `1` if scripted). If they are missing, you have a problem and should investigate before trusting the system.
 

@@ -14,6 +14,8 @@ These sit above or alongside the built-in firewall to control outbound traffic, 
 
 ### Vallum
 
+![Vallum overview](../assets/screenshots/tools/macos-vallum-overview.png)
+
 - GUI for managing outbound connections.
 - Often paired with Murus (packet filter frontend).
 - Good visibility into what wants to talk out.
@@ -61,6 +63,8 @@ Use these to cross-check:
 ## 3. Packet filter frontends
 
 ### Murus
+
+![Murus rules overview](../assets/screenshots/tools/macos-murus-rules-overview.png)
 
 - GUI frontend for pf (the built-in packet filter).
 - Allows building inbound/outbound rules beyond `socketfilterfw`.

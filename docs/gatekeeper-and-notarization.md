@@ -52,6 +52,8 @@ To assess an application bundle:
 spctl --assess --type execute -vv /Applications/SomeApp.app
 ```
 
+![spctl assess execute example](../assets/screenshots/integrity/macos-spctl-assess-execute-example.png)
+
 To assess an installer package:
 
 ```bash
@@ -99,6 +101,8 @@ Check it:
 ```bash
 xattr -l /Applications/SomeApp.app
 ```
+
+![xattr quarantine attribute example](../assets/screenshots/integrity/macos-xattr-quarantine-example.png)
 
 or for a downloaded installer:
 

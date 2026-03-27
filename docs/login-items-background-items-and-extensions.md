@@ -43,6 +43,8 @@ If you install a new tool and suddenly see new background items, review them imm
 
 ## 3. Login items
 
+![Login Items and Extensions settings](../assets/screenshots/privacy/macos-login-items-and-extensions.png)
+
 Login items are applications, documents, folders, or server connections configured to open automatically when a user logs in.
 
 This is not always malicious. Many legitimate tools do this.
@@ -85,6 +87,8 @@ List system extensions:
 ```bash
 systemextensionsctl list
 ````
+
+![systemextensionsctl list example](../assets/screenshots/privacy/macos-systemextensionsctl-list.png)
 
 Review the output for:
 

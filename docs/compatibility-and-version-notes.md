@@ -15,6 +15,8 @@ Always confirm your version first:
 sw_vers
 ````
 
+![sw_vers output example](../assets/screenshots/compatibility/macos-sw-vers.png)
+
 ## General rule
 
 Where two methods exist, prefer:

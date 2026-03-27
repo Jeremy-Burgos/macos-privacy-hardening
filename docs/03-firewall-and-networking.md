@@ -8,12 +8,6 @@ Enable the firewall:
 sudo /usr/libexec/ApplicationFirewall/socketfilterfw --setglobalstate on
 ````
 
-Enable logging:
-
-```bash
-sudo /usr/libexec/ApplicationFirewall/socketfilterfw --setloggingmode on
-```
-
 Enable stealth mode (ignore unsolicited probes like ICMP ping):
 
 ```bash
@@ -53,6 +47,8 @@ List firewall-registered apps:
 sudo /usr/libexec/ApplicationFirewall/socketfilterfw --listapps
 ```
 
+![socketfilterfw listapps example](../assets/screenshots/firewall/macos-socketfilterfw-listapps.png)
+
 Whenever you change firewall configuration, reload the daemon:
 
 ```bash
@@ -78,6 +74,8 @@ Or:
 ```bash
 /usr/libexec/ApplicationFirewall/socketfilterfw --getglobalstate
 ```
+
+![socketfilterfw global state example](../assets/screenshots/firewall/macos-socketfilterfw-getglobalstate.png)
 
 You want it to report “Firewall is enabled”.
 

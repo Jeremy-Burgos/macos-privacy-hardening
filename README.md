@@ -1,6 +1,6 @@
 # macOS Privacy & Hardening Toolkit
 
-A practical, evidence-first hardening guide for modern macOS systems.
+A practical security and privacy hardening guide for modern macOS systems.
 
 This repository is built for security-conscious macOS users who want better visibility, better verification, and a more deliberate local security posture. It focuses on attack-surface reduction, integrity checks, firewalling, DNS privacy, logging, and forensic visibility.
 
@@ -40,10 +40,10 @@ This is not a generic compliance template. It is a practical workstation hardeni
 
 Read these files first:
 
-- `QUICKSTART.md`
-- `THREAT_MODEL.md`
-- `TESTED_ON.md`
-- `DISCLAIMER.md`
+- [QUICKSTART.md](QUICKSTART.md)
+- [THREAT_MODEL.md](THREAT_MODEL.md)
+- [TESTED_ON.md](TESTED_ON.md)
+- [DISCLAIMER.md](DISCLAIMER.md)
 
 Then move into the numbered guides under `docs/`.
 
@@ -64,10 +64,10 @@ open docs/00-overview.md
 
 Good first sections to review:
 
-* `docs/01-integrity-and-xprotect.md`
-* `docs/03-firewall-and-networking.md`
-* `docs/05-logging-and-auditing.md`
-* `docs/10-browsers-and-vpns.md`
+* [docs/01-integrity-and-xprotect.md](docs/01-integrity-and-xprotect.md)
+* [docs/03-firewall-and-networking.md](docs/03-firewall-and-networking.md)
+* [docs/05-logging-and-auditing.md](docs/05-logging-and-auditing.md)
+* [docs/10-browsers-and-vpns.md](docs/10-browsers-and-vpns.md)
 
 The scripts under `scripts/` are examples only. Read them before running them.
 
@@ -79,12 +79,10 @@ macos-privacy-hardening/
 ├── QUICKSTART.md
 ├── DISCLAIMER.md
 ├── CHANGELOG.md
+├── LICENSE
 ├── SECURITY.md
 ├── TESTED_ON.md
 ├── THREAT_MODEL.md
-├── .editorconfig
-├── .markdownlint.json
-├── .github/
 ├── docs/
 └── scripts/
 ```
@@ -100,6 +98,36 @@ sw_vers
 ```
 
 Compatibility notes should be documented explicitly when a workflow changes between releases.
+
+## Suggested reading paths
+
+### Safe baseline
+
+Start with:
+
+* [QUICKSTART.md](QUICKSTART.md)
+* [docs/01-integrity-and-xprotect.md](docs/01-integrity-and-xprotect.md)
+* [docs/03-firewall-and-networking.md](docs/03-firewall-and-networking.md)
+* [docs/08-finder-ui-and-filevault.md](docs/08-finder-ui-and-filevault.md)
+* [docs/update-hygiene-and-background-security.md](docs/update-hygiene-and-background-security.md)
+
+### Defensive workstation
+
+Add:
+
+* [docs/02-users-and-groups.md](docs/02-users-and-groups.md)
+* [docs/04-dns-and-hosts.md](docs/04-dns-and-hosts.md)
+* [docs/05-logging-and-auditing.md](docs/05-logging-and-auditing.md)
+* [docs/privacy-permissions-and-tcc.md](docs/privacy-permissions-and-tcc.md)
+* [docs/login-items-background-items-and-extensions.md](docs/login-items-background-items-and-extensions.md)
+
+### High-risk hardening
+
+Add:
+
+* [docs/gatekeeper-and-notarization.md](docs/gatekeeper-and-notarization.md)
+* [docs/update-hygiene-and-background-security.md](docs/update-hygiene-and-background-security.md)
+* [docs/10-browsers-and-vpns.md](docs/10-browsers-and-vpns.md)
 
 ## Philosophy
 

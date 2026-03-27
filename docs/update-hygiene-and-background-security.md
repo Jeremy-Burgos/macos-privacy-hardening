@@ -31,6 +31,9 @@ It is not.
 
 ## 2. Review Software Update settings
 
+![Software Update settings](../assets/screenshots/updates/macos-software-update-settings.png)
+
+
 On modern macOS, review:
 
 - System Settings
@@ -85,6 +88,8 @@ For background-critical update checks:
 ```bash
 sudo softwareupdate -l --background-critical
 ```
+
+![softwareupdate background critical example](../assets/screenshots/updates/macos-softwareupdate-list-background-critical.png)
 
 This can be useful when validating that Apple-delivered critical/configuration update paths are still functioning as expected.
 

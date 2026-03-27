@@ -9,16 +9,16 @@ This repository documents a hardened macOS workstation baseline focused on:
 
 The sections are structured logically:
 
-1. `01-integrity-and-xprotect.md`
-2. `02-users-and-groups.md`
-3. `03-firewall-and-networking.md`
-4. `04-dns-and-hosts.md`
-5. `05-logging-and-auditing.md`
-6. `06-password-policy.md`
-7. `07-loginwindow-and-banners.md`
-8. `08-finder-ui-and-filevault.md`
-9. `09-third-party-tools.md`
-10. `10-browsers-and-vpns.md`
+1. [`01-integrity-and-xprotect.md`](01-integrity-and-xprotect.md)
+2. [`02-users-and-groups.md`](02-users-and-groups.md)
+3. [`03-firewall-and-networking.md`](03-firewall-and-networking.md)
+4. [`04-dns-and-hosts.md`](04-dns-and-hosts.md)
+5. [`05-logging-and-auditing.md`](05-logging-and-auditing.md)
+6. [`06-password-policy.md`](06-password-policy.md)
+7. [`07-loginwindow-and-banners.md`](07-loginwindow-and-banners.md)
+8. [`08-finder-ui-and-filevault.md`](08-finder-ui-and-filevault.md)
+9. [`09-third-party-tools.md`](09-third-party-tools.md)
+10.[ `10-browsers-and-vpns.md`](10-browsers-and-vpns.md)
 
 Each section contains:
 
