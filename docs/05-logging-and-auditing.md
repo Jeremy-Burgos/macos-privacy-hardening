@@ -3,10 +3,10 @@
 You cannot defend what you cannot see. This section focuses on:
 
 - Keeping install logs for at least a year
-- Enabling security auditing via auditd (where still applicable)
+- Enabling security auditing via auditd (advanced and optional)
 - Basic log review commands
 
-Apple has been moving away from traditional `auditd` toward the Unified Logging system, but these controls are still useful on many systems and for baselining.
+Apple has been moving away from traditional `auditd` toward the Unified Logging system. Unified Logging is the right default for routine visibility, and auditd is now an advanced, opt-in control.
 
 ## 1. Retain install.log for at least 365 days
 
@@ -16,7 +16,7 @@ Open the config:
 
 ```bash
 sudo vi /etc/asl/com.apple.install
-````
+```
 
 On the `file` line for `/var/log/install.log`:
 
@@ -39,26 +39,26 @@ Checks (logic borrowed from CIS-style tests):
 * `ttl` should be `>= 365`.
 * There should be **no** `all_max` on the active (non-commented) line.
 
-## 2. Enabling security auditing (auditd)
+## 2. Enabling security auditing (auditd), advanced and optional
 
-Audit logs are low-level event records (syscalls like `open`, `fork`, etc.).
+Audit logs are low-level event records, such as `open` and `fork` syscalls.
 
-Apple has deprecated `auditd` as of macOS 11 Big Sur, and in macOS 14 Sonoma it is no longer enabled by default. If your system still supports it and your threat model justifies the overhead, you can enable it.
+The OpenBSM audit subsystem is deprecated and disabled by default. It has been deprecated since macOS 11 Big Sur, disabled by default since macOS 14 Sonoma, and remains disabled through macOS 15 Sequoia and macOS 26 Tahoe. Apple has stated it will be removed in a future release, and the documented replacement is the Endpoint Security framework. Treat this section as advanced and optional, not a baseline control, and prefer Unified Logging for routine visibility.
 
-Load the daemon and create `audit_control`:
+If your threat model justifies the overhead, enable it using the method Apple currently documents. The older `launchctl load -w` path is deprecated and should not be used here:
 
 ```bash
-sudo launchctl load -w /System/Library/LaunchDaemons/com.apple.auditd.plist
 sudo cp /etc/security/audit_control.example /etc/security/audit_control
+sudo launchctl enable system/com.apple.auditd
+sudo reboot
 ```
 
-Verify:
+After the reboot, verify the daemon is running:
 
 ```bash
+sudo launchctl print system/com.apple.auditd | grep -i state
 launchctl list | grep com.apple.auditd
 ```
-
-You should see an entry for the audit daemon.
 
 Where logs live:
 
@@ -66,7 +66,7 @@ Where logs live:
 ls /var/audit
 ```
 
-These logs can grow quickly. Rotate and archive them according to your storage and retention policy.
+These logs can grow quickly. Rotate and archive them according to your storage and retention policy. Misconfiguring the audit subsystem on recent macOS has caused login loops, so test this on a non-primary machine before applying it anywhere you depend on.
 
 ## 3. Trigger an audit reload
 

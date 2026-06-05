@@ -2,6 +2,8 @@
 
 This section aligns roughly with CIS/Wazuh controls for local password policy.
 
+> Reliability note: `pwpolicy -setglobalpolicy` enforcement has been inconsistent on recent macOS, especially on Apple Silicon. Apple's own compliance tooling enforces password rules through a configuration profile (a passcode payload) rather than `pwpolicy`. On managed or modern systems, prefer a configuration profile and verify enforcement after applying any change here.
+
 ## 1. Sudo timeout set to zero
 
 Goal: no five-minute grace window for sudo.
@@ -10,7 +12,7 @@ Edit a dedicated sudoers config (no file extension):
 
 ```bash
 sudo visudo -f /etc/sudoers.d/10_cis_sudo_timeout
-````
+```
 
 Add:
 
@@ -148,4 +150,3 @@ tr -dc '[:graph:]' < /dev/urandom | fold -w 40 | head -n 5
 ```
 
 Store passwords in an offline or high-trust password manager. Do not reuse across systems and services.
-

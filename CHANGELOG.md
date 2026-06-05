@@ -4,6 +4,31 @@ All notable changes to this repository should be documented in this file.
 
 This changelog is meant to track meaningful documentation and structure changes, not every tiny wording fix.
 
+## [0.2.0] - 2026-06-05
+
+### Changed
+
+- firewall guidance clarified as inbound-only, and auto-allow-signed split into a reviewed, default-on control
+- auditd enablement updated to the `launchctl enable` syntax and reframed as advanced and optional
+- DNS guidance updated for current Homebrew behavior
+- XProtect section reframed around verification rather than manual `launchctl load`
+- `kextstat` supplemented with `kmutil showloaded` for Apple Silicon
+
+### Fixed
+
+- removed the broken `brew install dnsmasq --with-dnssec` command
+- corrected the misleading "audit system binaries" description of `audit -s`
+- corrected the firewall `defaults read com.apple.alf` check as pre-Sequoia only
+
+### Deprecated
+
+- documented OpenBSM audit subsystem status through macOS 15 Sequoia and macOS 26 Tahoe
+
+### Security
+
+- added an explicit Sequoia-and-later breakage warning and rollback for disabling auto-allow-signed
+- reframed MAC spoofing as unreliable on modern hardware and pointed to the private Wi-Fi address feature
+
 ## [0.1.0] - 2026-03-20
 
 ### Added

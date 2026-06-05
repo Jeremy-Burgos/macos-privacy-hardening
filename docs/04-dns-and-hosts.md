@@ -93,10 +93,10 @@ Confirm DNS is going through dnscrypt-proxy and not your ISP’s resolver.
 Install:
 
 ```bash
-brew install dnsmasq --with-dnssec
+brew install dnsmasq
 ```
 
-Note: on newer Homebrew, `--with-dnssec` may be deprecated; check `brew info dnsmasq`. If so, follow the current documentation for enabling DNSSEC.
+Homebrew removed all `--with-*` build options years ago, so `--with-dnssec` no longer exists and will error. Current dnsmasq builds include DNSSEC support, so you enable it in the configuration file rather than at install time. The example config below turns it on with the `dnssec` directive.
 
 Example minimal config (`/opt/homebrew/etc/dnsmasq.conf`):
 
@@ -141,35 +141,37 @@ sudo killall -HUP mDNSResponder
 
 If you are actively hunting, do this between tests to avoid stale answers.
 
-## 6. MAC address spoofing on untrusted Wi-Fi
+## 6. MAC address considerations on untrusted networks
 
-On a system that still uses Wi-Fi and allows interface changes, you can spoof the MAC address before connecting to a new network.
+Built-in MAC address spoofing on macOS is unreliable on current hardware and releases. Treat it as best-effort, not a dependable control.
 
-Example for `en0`:
+The historical approach was:
 
 ```bash
 sudo ifconfig en0 ether $(openssl rand -hex 6 | sed 's%\(..\)%\1:%g; s%$%%')
 ```
 
-Explanation:
+On modern macOS this frequently fails or silently does nothing:
 
-* `openssl rand -hex 6` generates 6 random bytes.
-* `sed` formats them as `aa:bb:cc:dd:ee:ff`.
-* `ifconfig en0 ether` applies it to interface `en0`.
+* On Apple Silicon and recent Intel systems, changing the Wi-Fi MAC with `ifconfig` often returns `ioctl (SIOCAIFADDR): Can't assign requested address`, or appears to succeed without changing anything.
+* On macOS 15 Sequoia, the change tends to work only in a narrow window: cycle Wi-Fi power off and on, then set the address before the interface associates with an access point.
+* On wired adapters, success is chipset dependent. Apple and Broadcom Ethernet generally accept it. Aquantia 10GbE and most USB adapters fail silently or with an error.
+* The old `airport -z` disassociate helper has been removed on recent macOS, so guidance that depends on it no longer applies.
 
-Check:
+For most privacy needs, prefer the built-in private Wi-Fi address feature, which randomizes the hardware address per network and has been available since macOS Catalina:
+
+* System Settings
+* Wi-Fi
+* select the network, then Details
+* Private Wi-Fi Address
+
+Verify whatever you set:
 
 ```bash
 ifconfig en0 | grep ether
 ```
 
-Be aware:
-
-* Some newer macOS versions and hardware enforce restrictions or do their own MAC randomization.
-* Many networks log your MAC; spoofing changes identity but also breaks MAC-based whitelisting.
-* Do this **before** joining the network, not mid-session.
-
-Use sparingly and deliberately.
+If `ifconfig` reports the new value, confirm the router or access point also sees it before relying on it. Do not assume the change took effect just because the command returned without error.
 
 ## 7. Operational hygiene: random password generation
 

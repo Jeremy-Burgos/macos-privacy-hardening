@@ -8,7 +8,7 @@ Check that a `.pkg` file is signed and by whom:
 
 ```bash
 pkgutil --check-signature /path/to/file.pkg
-````
+```
 
 ![pkgutil package signature verification example](../assets/screenshots/integrity/macos-pkgutil-check-signature-example.png)
 
@@ -60,17 +60,21 @@ List all loaded kernel extensions:
 kextstat
 ```
 
-On modern macOS versions, you should see relatively few third-party kexts. A long list of unknown vendors is a problem.
+`kextstat` still works but is the legacy tool. On Apple Silicon and current macOS, prefer:
 
-Trigger an audit of system binaries:
+```bash
+kmutil showloaded
+```
+
+On modern macOS you should see relatively few third-party kernel extensions. A long list of unknown vendors is a problem.
+
+Reload the audit configuration (only if you have intentionally enabled auditd):
 
 ```bash
 sudo audit -s
 ```
 
-This causes `auditd` (if configured) to reload its configuration and start logging according to `/etc/security/audit_control`.
-
-More on auditd in `05-logging-and-auditing.md`.
+This tells `auditd`, where it is enabled, to re-read its configuration. It does not scan or audit system binaries. The OpenBSM audit subsystem is disabled by default on macOS 14 and later, so on a standard system this command has nothing to reload. See `05-logging-and-auditing.md` for current status and the supported enable path.
 
 ## 4. Understanding plists
 
@@ -108,20 +112,16 @@ Be careful when editing plists manually; corrupted plists can break services. Pr
 
 XProtect is Apple’s built-in signature-based malware scanner. It is not a full EDR, but it is deeply integrated and should be enabled and up to date.
 
-### 5.1 Ensure XProtect daemons are loaded
+### 5.1 Verify XProtect daemons are present
 
-From the Wazuh / CIS-style remediation:
-
-```bash
-sudo launchctl load -w /Library/Apple/System/Library/LaunchDaemons/com.apple.XProtect.daemon.scan.plist
-sudo launchctl load -w /Library/Apple/System/Library/LaunchDaemons/com.apple.XprotectFramework.PluginService.plist
-```
-
-Note: paths and exact plist names can drift slightly between macOS releases; verify with:
+XProtect is managed by the operating system, and its LaunchDaemons live under SIP-protected system paths. On a healthy system they are already loaded, so manual loading is rarely needed, and the legacy `launchctl load -w` syntax often errors against system-managed services. Verify presence first:
 
 ```bash
 ls /Library/Apple/System/Library/LaunchDaemons | grep -i xprotect
+launchctl list | grep -i xprotect
 ```
+
+If the daemons are genuinely missing rather than just idle, treat that as a sign something is wrong with the system rather than something to force back on by hand, and investigate before trusting the machine. Plist names can change between releases, so confirm the exact names from the `ls` output rather than assuming them.
 
 ### 5.2 Trigger a background critical update check
 
